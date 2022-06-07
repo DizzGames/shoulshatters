@@ -1,0 +1,1 @@
+loadstring(game:HttpGet("https://raw.githubusercontent.com/FilledWIthDetermination/script/main/DoomShatters_Requiem.lua", true))()

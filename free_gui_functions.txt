@@ -1,0 +1,867 @@
+if game.PlaceId == 3198259055 then
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+local Window = OrionLib:MakeWindow({Name = "Skid scripts (Functions)", HidePremium = false, SaveConfig = true, ConfigFolder = "Skid scripts cfg"})
+
+OrionLib:MakeNotification({
+	Name = "Skid scripts",
+	Content = "GUI loaded, credits to MAnitosik#0548 and skid scripts discord server. It is a free script!",
+	Image = "rbxassetid://4483345998",
+	Time = 20
+})
+
+OrionLib:MakeNotification({
+	Name = "Skid scripts",
+	Content = "Credits to Dasver#0644 for some parts of code",
+	Image = "rbxassetid://4483345998",
+	Time = 20
+})
+
+--functions
+
+local Tab2 = Window:MakeTab({
+	Name = "Functions",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+Tab2:AddLabel("LMB Damage")
+
+Tab2:AddButton({
+	Name = "LMB NAN damage",
+	Callback = function()
+local ya = getrawmetatable(game)
+local mum = ya.__namecall
+setreadonly(ya, false)
+ya.__namecall =
+    newcclosure(
+    function(name, ...)
+        local tabs = {...}
+        if getnamecallmethod() == "InvokeServer" and tostring(name) == "Damage" then
+            tabs[3]["HitEffect"] = "HeavyHitEffect" -- any hit effect (use dex if u not know any)
+            tabs[3]["Damage"] = "NaN" -- 40 max for knockback, 10 max for normal hits
+            tabs[3]["Type"] = "Normal" -- type (knockback or normal)
+            tabs[3]["Velocity"] = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.LookVector * 2 -- m1 knockback go brrrr
+        end
+        return mum(name, unpack(tabs))
+    end
+)
+
+setreadonly(ya, true)
+  	end    
+})
+
+Tab2:AddButton({
+	Name = "fling by lmb",
+	Callback = function()
+local ya = getrawmetatable(game)
+local mum = ya.__namecall
+setreadonly(ya, false)
+ya.__namecall =
+    newcclosure(
+    function(name, ...)
+        local tabs = {...}
+        if getnamecallmethod() == "InvokeServer" and tostring(name) == "Damage" then
+            tabs[3]["HitEffect"] = "HeavyHitEffect" -- any hit effect (use dex if u not know any)
+            tabs[3]["Damage"] = 1 -- 40 max for knockback, 10 max for normal hits
+            tabs[3]["Type"] = "Normal" -- type (knockback or normal)
+            tabs[3]["Velocity"] = Vector3.new(0,0.0,0) -- m1 knockback go brrrr
+        end
+        return mum(name, unpack(tabs))
+    end
+)
+
+setreadonly(ya, true)
+  	end    
+})
+
+Tab2:AddLabel("Damage auras")
+
+Tab2:AddButton({
+	Name = "Knockback aura",
+	Callback = function()
+player = game.Players.LocalPlayer
+char = player.Character
+local function aura()
+            for _,v in pairs(game.workspace:GetChildren()) do
+                if v:FindFirstChildOfClass('Humanoid') and v ~= char and v:FindFirstChild('HumanoidRootPart') then
+                    range = (char.PrimaryPart.Position - v.PrimaryPart.Position).Magnitude
+                    if range <15 and v.Name ~= player.Name then
+                        spawn(function()
+                            local A_1 = getrenv()._G.Pass
+                            local A_2 = v
+                            local A_3 =  {
+                                ["Type"] = "Knockback",
+                                ["HitEffect"] = "HeavyHitEffect", 
+                                ["HurtAnimation"] = game:GetService("ReplicatedStorage").Animations.Clashing, 
+                                ["Velocity"] = Vector3.new(0, 100, 0), 
+                                ["HitTime"] = 1, 
+                                ["CombatInv"] = true, 
+                                ["Sound"] = game:GetService("ReplicatedStorage").RogueSounds.BaneDischarge, 
+                                ["Damage"] = 1
+                            }
+                            local Event = game:GetService("ReplicatedStorage").Remotes.Damage
+                            Event:InvokeServer(A_1, A_2, A_3)
+                        end)
+                    end
+                end
+            end
+end
+
+while wait(0.2) do
+         aura()
+end
+  	end    
+})
+
+Tab2:AddLabel("Character")
+
+Tab2:AddButton({
+	Name = "Buff character",
+	Callback = function()
+local char = game.Players.LocalPlayer.Character
+spawn(function()
+    repeat wait()
+        for _,v in pairs(char:GetChildren()) do
+            if v.Name == 'DrainStamina' or v.Name == 'DrainSprint' or v.Name == 'Hit' or v.Name == 'Hitt' or v.Name == 'Damaged' or v.Name == 'Grounded' or v.Name == 'StayGrounded' or v.Name == 'KnockBack' or v.Name == 'Walled' then
+                v:Destroy()
+            end
+        end
+    until false
+end)
+
+char = game.Players.LocalPlayer.Character
+spawn(function()
+    repeat wait()
+        for _,v in pairs(char:GetChildren()) do
+            if v.Name == 'DrainStamina' or v.Name == 'DrainSprint' or v.Name == 'Hit' or v.Name == 'Hitt' or v.Name == 'Damaged' or v.Name == 'Grounded' or v.Name == 'StayGrounded' or v.Name == 'KnockBack' or v.Name == 'Walled' then
+                v:Destroy()
+            end
+        end
+    until false
+end)
+char = game.Players.LocalPlayer.Character
+spawn(function()
+    repeat wait()
+        for _,v in pairs(char:GetChildren()) do
+            if v.Name == 'DrainStamina' or v.Name == 'DrainSprint' or v.Name == 'Hit' or v.Name == 'Hitt' or v.Name == 'Damaged' or v.Name == 'Grounded' or v.Name == 'StayGrounded' or v.Name == 'KnockBack' or v.Name == 'Walled' then
+                v:Destroy()
+            end
+        end
+    until false
+end)
+char = game.Players.LocalPlayer.Character
+spawn(function()
+    repeat wait()
+        for _,v in pairs(char:GetChildren()) do
+            if v.Name == 'DrainStamina' or v.Name == 'DrainSprint' or v.Name == 'Hit' or v.Name == 'Hitt' or v.Name == 'Damaged' or v.Name == 'Grounded' or v.Name == 'StayGrounded' or v.Name == 'KnockBack' or v.Name == 'Walled' then
+                v:Destroy()
+            end
+        end
+    until false
+end)
+  	end    
+})
+
+Tab2:AddSlider({
+	Name = "Run speed",
+	Min = 0,
+	Max = 1000,
+	Default = nil,
+	Color = Color3.fromRGB(255,255,255),
+	Increment = 5,
+	ValueName = "Speed",
+	Callback = function(Value)
+spawn (function()
+local bypass = Instance.new("BoolValue")
+bypass.Name = "Battling"
+bypass.Parent = game.Players.LocalPlayer.Character
+wait(1)
+game.Players.LocalPlayer.Backpack.Main.RunSpeed.Value = Value
+local bypass = Instance.new("BoolValue")
+bypass.Name = "Battling"
+bypass.Parent = game.Players.LocalPlayer.Character
+end)
+	end    
+})
+
+Tab2:AddSlider({
+	Name = "Walk speed",
+	Min = 0,
+	Max = 1000,
+	Default = nil,
+	Color = Color3.fromRGB(255,255,255),
+	Increment = 5,
+	ValueName = "Speed",
+	Callback = function(Value)
+spawn (function()
+local bypass = Instance.new("BoolValue")
+bypass.Name = "Battling"
+bypass.Parent = game.Players.LocalPlayer.Character
+wait(1)
+local bypass = Instance.new("BoolValue")
+bypass.Name = "Battling"
+bypass.Parent = game.Players.LocalPlayer.Character
+wait(1)
+game.Players.LocalPlayer.Backpack.Main.WalkSpeed.Value = Value
+end)
+	end    
+})
+
+Tab2:AddSlider({
+	Name = "Jump power",
+	Min = 0,
+	Max = 1000,
+	Default = nil,
+	Color = Color3.fromRGB(255,255,255),
+	Increment = 5,
+	ValueName = "Power",
+	Callback = function(Value)
+spawn (function()
+plr = game.Players.LocalPlayer
+plr.Character.Humanoid.JumpPower = Value
+end)
+	end    
+})
+
+Tab2:AddSlider({
+	Name = "Gravity",
+	Min = 0,
+	Max = 1000,
+	Default = nil,
+	Color = Color3.fromRGB(255,255,255),
+	Increment = 5,
+	ValueName = "Power",
+	Callback = function(Value)
+game.Workspace.Gravity = Value
+	end    
+})
+
+Tab2:AddSlider({
+	Name = "Hip hieght",
+	Min = 0,
+	Max = 500,
+	Default = 0,
+	Color = Color3.fromRGB(255,255,255),
+	Increment = 5,
+	ValueName = "Hip Hieght",
+	Callback = function(Value)
+spawn (function()
+game.Players.LocalPlayer.Character.Humanoid.HipHeight = Value
+end)
+	end    
+})
+
+Tab2:AddButton({
+	Name = "Inf tp",
+	Callback = function()
+local uis = game:GetService("UserInputService")
+local player = game.Players.LocalPlayer
+
+uis.InputBegan:Connect(function(inputs, event)
+	if event == true then return end
+
+	if inputs.KeyCode == Enum.KeyCode.R then
+
+		if player.Backpack:WaitForChild("Main").LockOnScript.LockOn.Value == nil then
+
+			print("mouse cframe teleport")
+
+			local cfr = player:GetMouse().Hit
+
+			player.Character:SetPrimaryPartCFrame(cfr * CFrame.new(0, 2, 0))
+
+		else
+
+			print("player cframe teleport")
+
+			local Tcf = player.Backpack:WaitForChild("Main").LockOnScript.LockOn.Value:GetPrimaryPartCFrame()
+
+			player.Character:SetPrimaryPartCFrame(Tcf * CFrame.new(0, 0, 3))
+
+		end
+
+	end
+
+end)
+  	end    
+})
+
+Tab2:AddButton({
+	Name = "Lock on 0 hp players",
+	Callback = function()
+--// made by just a tree#0556 so fuck you
+--// you can lock on 0hp people
+
+if not (getgc and getconstants and setconstant) then
+    
+    warn("NOT SUPPORTED EXPLOIT")
+    game.StarterGui:SetCore("SendNotification", {
+    	Title = "WARNING";
+    	Text = "NOT SUPPORTED EXPLOIT";
+    	Duration = 5;
+    })
+    return
+    
+end
+
+pcall(function()
+    
+    local funcs = {}
+    
+    for i, v in next, getgc() do
+        
+        if type(v) == "function" then
+            
+            if getfenv(v).script and getfenv(v).script.Name and getfenv(v).script.Name == "LockOnScript" then
+                
+                table.insert(funcs, v)
+                
+            end
+            
+        end
+        
+    end
+    
+    repeat wait() until #funcs ~= 0
+    
+    local target = funcs[#funcs]
+    
+    for i2, v2 in next, getconstants(target) do
+        
+        if i2 == 44 and tostring(v2) == "0" then
+            
+            setconstant(target, i2, -999999)
+            print("hooked")
+            
+        end
+        
+    end
+    
+end)
+  	end    
+})
+
+Tab2:AddTextbox({
+	Name = "Text to say",
+	Default = "hello",
+	TextDisappear = false,
+	Callback = function(Value)
+    local A_1 = {
+        [1] = getrenv()._G.Pass,
+        [2] = "Chatted",
+        [3] = Value,
+        [4] = Color3.new(1, 1, 1)
+    }
+    local Event = game:GetService("ReplicatedStorage").Remotes.Events
+    Event:FireServer(A_1)
+	end	  
+})
+
+Tab2:AddToggle({
+	Name = "Autoblock",
+	Default = false,
+	Callback = function(Value)
+spawn (function()
+                local A_1 = 
+        {
+            [1] = getrenv()._G.Pass, 
+            [2] = "Blocking", 
+            [3] = Value
+        }
+        local Event = game:GetService("ReplicatedStorage").Remotes.Functions
+        Event:InvokeServer(A_1)
+end)
+	end    
+})
+
+Tab2:AddLabel("FE/GUI")
+
+Tab2:AddColorpicker({
+	Name = "Chat color changer",
+	Default = Color3.fromRGB(255, 0, 0),
+	Callback = function(Value)
+spawn (function()
+game.Players.LocalPlayer.Character.Head.ChildAdded:Connect(function(v)
+    if v.Name == "TextBar" then
+        v:WaitForChild("TextLabel")
+        for _,v in pairs(v:GetChildren()) do
+            game:GetService("RunService").Heartbeat:wait()
+            v.TextColor3 = Value
+        end
+    end
+end)
+end)
+	end	  
+})
+
+Tab2:AddTextbox({
+	Name = "Gui attack text changer",
+	Default = "Attack:100",
+	TextDisappear = false,
+	Callback = function(Value)
+game.Players.LocalPlayer.PlayerGui.UI.Ui.Info.Attack.Text = Value
+	end	  
+})
+
+Tab2:AddTextbox({
+	Name = "Gui defense text changer",
+	Default = "Defense:100",
+	TextDisappear = false,
+	Callback = function(Value)
+game.Players.LocalPlayer.PlayerGui.UI.Ui.Info.Defense.Text = Value
+	end	  
+})
+
+ Tab2:AddToggle({
+    Name = "Dark aura",
+    Default = false,
+    Callback = function(state)
+spawn (function()
+if state == true then
+            for _, v in pairs(game:GetService("ReplicatedStorage").Effects:GetChildren()) do
+                if v.Name == "DarkAuraEffect" then
+                    local char = game.Players.LocalPlayer.Character
+                    sword2 = v:Clone()
+                    sword2.Parent = char
+                    sword2.Anchored = false
+                    weld = Instance.new("Weld", sword2)
+                    weld.Part0 = sword2
+                    weld.Part1 = char["Torso"]
+                    sword2.Name = "GameDark"
+                    weld.C0 = CFrame.new(0, 2, 0) * CFrame.Angles(0, 0, 0)
+                    sword2.Transparency = 1
+                end
+            end
+            for _, v in pairs(game:GetService("ReplicatedStorage").Effects:GetChildren()) do
+                if v.Name == "TransformationAura" then
+                    local char = game.Players.LocalPlayer.Character
+                    sword2 = v:Clone()
+                    sword2.Parent = char
+                    sword2.Anchored = false
+                    weld = Instance.new("Weld", sword2)
+                    weld.Part0 = sword2
+                    weld.Part1 = char["Torso"]
+                    sword2.Name = "GameDark"
+                    weld.C0 = CFrame.new(0, 2, 0) * CFrame.Angles(0, 0, 0)
+                    sword2.Transparency = 1
+                end
+            end
+
+end
+
+if state == false then 
+            for _, v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
+                if v.Name == "GameDark" then
+                    v:Destroy()
+                end
+            end
+end
+end)  
+    end    
+})
+
+Tab2:AddToggle({
+    Name = "Gaster blasters",
+    Default = false,
+    Callback = function(state)
+spawn (function()
+if state == true then
+        local p = game.Players.LocalPlayer
+        local char = p.Character
+        local mouse = p:GetMouse()
+        local larm = char["Left Arm"]
+        local rarm = char["Right Arm"]
+        local lleg = char["Left Leg"]
+        local rleg = char["Right Leg"]
+        local hed = char.HumanoidRootPart
+        local torso = char.Torso
+        local hum = char.Humanoid
+        local root = char.HumanoidRootPart
+        local rs = game:GetService("RunService").RenderStepped
+        local new = Instance.new
+        local v3 = Vector3.new
+        local ns = NumberSequence.new
+        local nr = NumberRange.new
+        local bc = BrickColor.new
+        local cf = CFrame.new
+        local cfa = CFrame.Angles
+        local rad = math.rad
+
+        a1 = new("Part", char)
+        a1.Name = "H1"
+        a1.BrickColor = BrickColor.new("White")
+        a1.Material = "Neon"
+        a1.Transparency = 0
+        aa1 = new("SpecialMesh", a1)
+        aa1.MeshType = "FileMesh"
+        aa1.Offset = v3(7, 3, -0.1)
+        aa1.Scale = v3(0.1, 0.1, 0.1)
+        aa1.MeshId = "rbxassetid://2267134290"
+        aaa1 = new("Weld", a1)
+        aaa1.Part0 = hed
+        aaa1.Part1 = a1
+        aaa1.C0 = CFrame.Angles(0, math.rad(0), 0)
+
+        a2 = new("Part", char)
+        a2.Name = "H2"
+        a2.BrickColor = BrickColor.new("White")
+        a2.Material = "Neon"
+        a2.Transparency = 0
+        aa2 = new("SpecialMesh", a2)
+        aa2.MeshType = "FileMesh"
+        aa2.Offset = v3(9.1, 2.01, -0.2)
+        aa2.Scale = v3(0.07, 0.07, 0.07)
+        aa2.MeshId = "rbxassetid://2267146284"
+        aaa2 = new("Weld", a2)
+        aaa2.Part0 = hed
+        aaa2.Part1 = a2
+        aaa2.C0 = CFrame.Angles(0, math.rad(0), 0)
+
+        a3 = new("Part", char)
+        a3.Name = "H3"
+        a3.BrickColor = BrickColor.new("White")
+        a3.Material = "Neon"
+        a3.Transparency = 0
+        aa3 = new("SpecialMesh", a3)
+        aa3.MeshType = "FileMesh"
+        aa3.Offset = v3(5, 2.01, -0.2)
+        aa3.Scale = v3(0.07, 0.07, 0.07)
+        aa3.MeshId = "rbxassetid://2267147917"
+        aaa3 = new("Weld", a3)
+        aaa3.Part0 = hed
+        aaa3.Part1 = a3
+        aaa3.C0 = CFrame.Angles(0, math.rad(0), 0)
+
+        a4 = new("Part", char)
+        a4.Name = "H4"
+        a4.BrickColor = BrickColor.new("White")
+        a4.Material = "Neon"
+        a4.Transparency = 0
+        aa4 = new("SpecialMesh", a4)
+        aa4.MeshType = "FileMesh"
+        aa4.Offset = v3(7, 3, -0.1)
+        aa4.Scale = v3(0.1, 0.1, 0.1)
+        aa4.MeshId = "rbxassetid://2267130588"
+        aaa4 = new("Weld", a4)
+        aaa4.Part0 = hed
+        aaa4.Part1 = a4
+        aaa4.C0 = CFrame.Angles(0, math.rad(0), 0)
+
+        a5 = new("Part", char)
+        a5.Name = "H5"
+        a5.BrickColor = BrickColor.new("White")
+        a5.Material = "Neon"
+        a5.Transparency = 0
+        aa5 = new("SpecialMesh", a5)
+        aa5.MeshType = "FileMesh"
+        aa5.Offset = v3(7, 3, -0.1)
+        aa5.Scale = v3(0.1, 0.1, 0.1)
+        aa5.MeshId = "rbxassetid://2267130588"
+        aaa5 = new("Weld", a5)
+        aaa5.Part0 = hed
+        aaa5.Part1 = a5
+        aaa5.C0 = CFrame.Angles(0, math.rad(0), 0)
+
+        a1e = new("Part", char)
+        a1e.Name = "H6"
+        a1e.BrickColor = BrickColor.new("White")
+        a1e.Material = "Neon"
+        a1e.Transparency = 0
+        aa1e = new("SpecialMesh", a1e)
+        aa1e.MeshType = "FileMesh"
+        aa1e.Offset = v3(-7, 3, -0.1)
+        aa1e.Scale = v3(0.1, 0.1, 0.1)
+        aa1e.MeshId = "rbxassetid://2267134290"
+        aaa1e = new("Weld", a1e)
+        aaa1e.Part0 = hed
+        aaa1e.Part1 = a1e
+        aaa1e.C0 = CFrame.Angles(0, math.rad(0), 0)
+
+        a2e = new("Part", char)
+        a2e.Name = "H7"
+        a2e.BrickColor = BrickColor.new("White")
+        a2e.Material = "Neon"
+        a2e.Transparency = 0
+        aa2e = new("SpecialMesh", a2e)
+        aa2e.MeshType = "FileMesh"
+        aa2e.Offset = v3(-5, 2.01, -0.2)
+        aa2e.Scale = v3(0.07, 0.07, 0.07)
+        aa2e.MeshId = "rbxassetid://2267146284"
+        aaa2e = new("Weld", a2e)
+        aaa2e.Part0 = hed
+        aaa2e.Part1 = a2e
+        aaa2e.C0 = CFrame.Angles(0, math.rad(0), 0)
+
+        a3e = new("Part", char)
+        a3e.Name = "H8"
+        a3e.BrickColor = BrickColor.new("White")
+        a3e.Material = "Neon"
+        a3e.Transparency = 0
+        aa3e = new("SpecialMesh", a3e)
+        aa3e.MeshType = "FileMesh"
+        aa3e.Offset = v3(-9.1, 2.01, -0.2)
+        aa3e.Scale = v3(0.07, 0.07, 0.07)
+        aa3e.MeshId = "rbxassetid://2267147917"
+        aaa3e = new("Weld", a3e)
+        aaa3e.Part0 = hed
+        aaa3e.Part1 = a3e
+        aaa3e.C0 = CFrame.Angles(0, math.rad(0), 0)
+end
+if state == false then 
+workspace[game.Players.LocalPlayer.Name].H1:Destroy()
+workspace[game.Players.LocalPlayer.Name].H2:Destroy()
+workspace[game.Players.LocalPlayer.Name].H3:Destroy()
+workspace[game.Players.LocalPlayer.Name].H4:Destroy()
+workspace[game.Players.LocalPlayer.Name].H5:Destroy()
+workspace[game.Players.LocalPlayer.Name].H6:Destroy()
+workspace[game.Players.LocalPlayer.Name].H7:Destroy()
+workspace[game.Players.LocalPlayer.Name].H8:Destroy()
+end
+end)
+      end
+})
+
+Tab2:AddToggle({
+    Name = "GTSword",
+    Default = false,
+    Callback = function(state)
+spawn (function()
+if state == true then
+                   for _, v in pairs(game.ReplicatedStorage.Weapons:GetChildren()) do
+                if v.Name == "GTFriskSword" then
+                    local char = game.Players.LocalPlayer.Character
+                    sword2 = v:Clone()
+                    sword2.Parent = char
+                    sword2.GTFriskSword:Destroy()
+                    sword2.Anchored = false
+                    weld = Instance.new("Weld", sword2)
+                    weld.Part0 = sword2
+                    weld.Part1 = char["Right Arm"]
+                    sword2.Name = "GTSword"
+                    sword2.Color = Color3.fromRGB(255, 0, 0)
+                    weld.C0 = CFrame.new(0.95, -1.7, -0) * CFrame.Angles(1.6, 0, -1.6)
+                    sword2.Transparency = 0
+                end
+            end
+   
+         end
+
+if state == false then 
+           for _, v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
+                if v.Name == "GTSword" then
+                    v:Destroy()
+                end
+            end
+ 
+         end
+end)      
+      end    
+})
+
+Tab2:AddButton({
+	Name = "Fps counter",
+	Callback = function()
+local UI = game:GetObjects("rbxassetid://8524217009")[1]
+if game.CoreGui:FindFirstChild("FPSCounter") then
+	game.CoreGui:FindFirstChild("FPSCounter"):Destroy()
+end
+UI.Parent = game.CoreGui
+UI.Main.Position = UDim2.new(0, 959,0, 49)
+print(UI.Main.Position)
+local UserInputService = game:GetService("UserInputService")
+local TweenService = game:GetService("TweenService")
+local DR = false
+
+if isfile and readfile then
+	local YOffset = 49
+	local XOffset = 959
+	if isfile("FPS Position Y Offset.txt") then
+		YOffset = readfile("FPS Position Y Offset.txt")
+	end
+	if isfile("FPS Position X Offset.txt") then
+		XOffset = readfile("FPS Position X Offset.txt")
+	end
+	
+	local Position = UDim2.new(0,XOffset,0,YOffset)
+	UI.Main.Position = Position
+end
+
+UI.Main.BackgroundTransparency = 1
+UI.Main.Title.TextTransparency = 1
+
+local transitionInfo = TweenInfo.new(0.8, Enum.EasingStyle.Back)
+local tween = TweenService:Create(UI.Main, transitionInfo, {BackgroundTransparency = 0.8})
+tween:Play()
+local transitionInfo = TweenInfo.new(0.8, Enum.EasingStyle.Back)
+local tween = TweenService:Create(UI.Main.Title, transitionInfo, {TextTransparency = 0.4})
+tween:Play()
+
+
+local function MakeDraggable(objecttodragfrom, object) 
+	pcall(function()
+		local dragging = false
+		local dragInput, mousePos, framePos
+
+		objecttodragfrom.InputBegan:Connect(function(input)
+			if input.UserInputType == Enum.UserInputType.MouseButton1 then
+				dragging = true
+				DR = true
+				mousePos = input.Position
+				framePos = object.Position
+
+				input.Changed:Connect(function()
+					if input.UserInputState == Enum.UserInputState.End then
+						dragging = false
+					end
+				end)
+			end
+		end)
+
+		objecttodragfrom.InputChanged:Connect(function(input)
+			if input.UserInputType == Enum.UserInputType.MouseMovement then
+				dragInput = input
+			end
+		end)
+
+		UserInputService.InputChanged:Connect(function(input)
+			if input == dragInput and dragging then
+				local delta = input.Position - mousePos
+				local transitionInfo = TweenInfo.new(0.4, Enum.EasingStyle.Quint)
+				local tween = TweenService:Create(object, transitionInfo, {Position = UDim2.new(0, framePos.X.Offset + delta.X, 0, framePos.Y.Offset + delta.Y)})
+				tween:Play()
+				wait(0.1)
+			end
+		end)
+	end)
+end
+
+MakeDraggable(UI.Main,UI.Main)
+
+UI.Main.MouseEnter:Connect(function()
+	local transitionInfo = TweenInfo.new(0.8, Enum.EasingStyle.Quint)
+	local tween = TweenService:Create(UI.Main, transitionInfo, {BackgroundTransparency = 0.4})
+	tween:Play()
+	local transitionInfo = TweenInfo.new(0.8, Enum.EasingStyle.Quint)
+	local tween = TweenService:Create(UI.Main.Title, transitionInfo, {TextTransparency = 0.1})
+	tween:Play()
+end)
+
+UI.Main.MouseLeave:Connect(function()
+	local transitionInfo = TweenInfo.new(0.8, Enum.EasingStyle.Quint)
+	local tween = TweenService:Create(UI.Main, transitionInfo, {BackgroundTransparency = 0.8})
+	tween:Play()
+	local transitionInfo = TweenInfo.new(0.8, Enum.EasingStyle.Quint)
+	local tween = TweenService:Create(UI.Main.Title, transitionInfo, {TextTransparency = 0.4})
+	tween:Play()
+end)
+
+
+local FPSLabel = UI.Main.Title
+local Heartbeat = game:GetService("RunService").Heartbeat
+
+local LastIteration, Start
+local FrameUpdateTable = { }
+
+local function HeartbeatUpdate()
+	LastIteration = tick()
+	for Index = #FrameUpdateTable, 1, -1 do
+		FrameUpdateTable[Index + 1] = (FrameUpdateTable[Index] >= LastIteration - 1) and FrameUpdateTable[Index] or nil
+	end
+	FrameUpdateTable[1] = LastIteration
+	local CurrentFPS = (tick() - Start >= 1 and #FrameUpdateTable) or (#FrameUpdateTable / (tick() - Start))
+	CurrentFPS = math.floor(CurrentFPS)
+	
+	FPSLabel.Text = tostring(CurrentFPS).." FPS"
+end
+
+Start = tick()
+Heartbeat:Connect(HeartbeatUpdate)
+
+
+while true do
+	wait(2)
+	writefile("FPS Position Y Offset.txt",UI.Main.Position.Y.Offset)
+	writefile("FPS Position X Offset.txt",UI.Main.Position.X.Offset)
+end
+  	end    
+})
+
+Tab2:AddColorpicker({
+	Name = "HealthBar color",
+	Default = Color3.fromRGB(255, 0, 0),
+	Callback = function(Value)
+spawn (function()
+game.Players.LocalPlayer.Character.Head.HealthBar.Frame.Health.BackgroundColor3 = Value
+end)
+	end	  
+})
+
+Tab2:AddTextbox({
+	Name = "Nickname changer",
+	Default = "Nickname",
+	TextDisappear = false,
+	Callback = function(Value)
+spawn (function()
+local player = game.Players.LocalPlayer
+local PName = player.Character.Head.HealthBar.Frame.PName
+PName.Text = Value
+end)
+	end	  
+})
+
+Tab2:AddColorpicker({
+	Name = "Nickname color changer",
+	Default = Color3.fromRGB(255, 255, 255),
+	Callback = function(Value)
+spawn (function()
+local player = game.Players.LocalPlayer
+local PName = player.Character.Head.HealthBar.Frame.PName
+PName.TextColor3 = Value
+PName.TextStrokeColor3 = Value
+PName.BackgroundColor3 = Value
+end)
+	end	  
+})
+
+Tab2:AddButton({
+	Name = "Destroy pants&accessory",
+	Callback = function()
+spawn (function()
+for thing, child in ipairs(game.Players.LocalPlayer.Character:GetChildren()) do
+    if child:IsA("Shirt") or child:IsA("Pants") or child:IsA("Accessory")then
+		child:Destroy()
+	end
+
+end
+end)
+  	end    
+})
+
+Tab2:AddColorpicker({
+	Name = "Stamina bar color changer",
+	Default = Color3.fromRGB(255, 255, 255),
+	Callback = function(Value)
+spawn (function()
+game.Players.LocalPlayer.PlayerGui.UI.Ui.StaminaBar.Bar.BackgroundColor3 = Value
+end)
+	end	  
+})
+
+Tab2:AddColorpicker({
+	Name = "Mana bar color changer",
+	Default = Color3.fromRGB(255, 255, 255),
+	Callback = function(Value)
+spawn (function()
+game.Players.LocalPlayer.PlayerGui.UI.Ui.ManaBar.Bar.BackgroundColor3 = Value
+end)
+	end	  
+})
+
+OrionLib:MakeNotification({
+	Name = "Skid scripts",
+	Content = "Functions loaded",
+	Image = "rbxassetid://4483345998",
+	Time = 10
+})
+
+end
